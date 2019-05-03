@@ -1,2 +1,19 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<Empleados />
+<Empleados>
+  <Empleado>
+    <Documento>2</Documento>
+    <Nombre>1</Nombre>
+    <Dirección>7</Dirección>
+    <Teléfono />
+    <Email />
+    <DatosAdicionales />
+  </Empleado>
+  <Empleado>
+    <Documento>2</Documento>
+    <Nombre>1</Nombre>
+    <Dirección>7</Dirección>
+    <Teléfono />
+    <Email />
+    <DatosAdicionales />
+  </Empleado>
+</Empleados>
