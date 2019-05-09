@@ -15,7 +15,6 @@ namespace Fundamentos_de_XML
         public XmlDocument doc;
         public string rutaXml;
 
-
         public void _crearArchivo()
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -167,6 +166,8 @@ namespace Fundamentos_de_XML
             string datosadicionales
             )
         {
+            doc = new XmlDocument();
+            doc.Load(rutaXml);
             XmlElement empleados = doc.DocumentElement;
             XmlNodeList listaEmpleados = doc.SelectNodes("Empleados/Empleado");
             XmlNode nuevo_empleado = _Crear_Empleado(id_update, Nombre, Direccion, Telefono, Email,

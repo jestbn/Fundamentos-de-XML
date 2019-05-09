@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Empleados>
+  <Empleado>
+    <Documento>2</Documento>
+    <Nombre>pues</Nombre>
+    <Dirección>Calle13</Dirección>
+    <Teléfono>tel3145</Teléfono>
+    <Email>j@eso.com</Email>
+    <DatosAdicionales>Adicionales</DatosAdicionales>
+  </Empleado>
+  <Empleado>
+    <Documento>3</Documento>
+    <Nombre>Juan Esteban</Nombre>
+    <Dirección>Calle13</Dirección>
+    <Teléfono>tel3145</Teléfono>
+    <Email>j@eso.com</Email>
+    <DatosAdicionales>datosa</DatosAdicionales>
+  </Empleado>
+  <Empleado>
+    <Documento>4</Documento>
+    <Nombre>jose test</Nombre>
+    <Dirección>Calle13</Dirección>
+    <Teléfono>tel3145</Teléfono>
+    <Email>j@eso.com</Email>
+    <DatosAdicionales>datosa</DatosAdicionales>
+  </Empleado>
+  <Empleado>
+    <Documento>5</Documento>
+    <Nombre>Juan Esteban</Nombre>
+    <Dirección>Calle13</Dirección>
+    <Teléfono>tel3145</Teléfono>
+    <Email>j@eso.com</Email>
+    <DatosAdicionales>datosa</DatosAdicionales>
+  </Empleado>
+  <Empleado>
+    <Documento>6</Documento>
+    <Nombre>Juan Esteban</Nombre>
+    <Dirección>Calle13</Dirección>
+    <Teléfono>tel3145</Teléfono>
+    <Email>j@eso.com</Email>
+    <DatosAdicionales>datosa</DatosAdicionales>
+  </Empleado>
+</Empleados>
