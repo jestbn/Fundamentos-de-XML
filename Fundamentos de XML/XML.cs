@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.IO;
 using System.Windows.Forms;
+using System.Data;
 
 namespace Fundamentos_de_XML
 {
@@ -45,9 +46,9 @@ namespace Fundamentos_de_XML
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 rutaXml = openFileDialog.FileName;
-                //queda pendiente para cargarlo en el datagrid en esta parte del codigo
             }
         }
+
 
         public void _crearXml(string ruta, string nodoRaiz)
         {
@@ -64,7 +65,6 @@ namespace Fundamentos_de_XML
             try
             {
                 doc.Save(ruta);
-                //en esta parte queda pendiente para volver a mostrar el registro en el datagrid
             }
             catch (Exception e)
             {

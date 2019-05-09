@@ -29,13 +29,14 @@ namespace Fundamentos_de_XML
             {
                 Mixml._cargarArchivo();  
             }
-
+            refrescaDG();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             
                 Mixml._Añadir(txtDocumento.Text, txtNombre.Text, txtDireccion.Text, txtTelefono.Text, txtEmail.Text, txtDatosAdicionales.Text);
+            refrescaDG();
             
         }
 
@@ -50,10 +51,12 @@ namespace Fundamentos_de_XML
 
         }
 
-        private void dgEmpleados_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        public void refrescaDG()
         {
             DataSet dataSet = new DataSet();
             dataSet.ReadXml(Mixml.rutaXml);
+            dgEmpleados.DataSource = dataSet.Tables[0];
         }
+
     }
 }
