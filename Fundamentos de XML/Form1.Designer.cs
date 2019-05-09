@@ -51,16 +51,22 @@
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnActualizar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgEmpleados)).BeginInit();
             this.SuspendLayout();
             // 
             // dgEmpleados
             // 
             this.dgEmpleados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgEmpleados.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgEmpleados.Location = new System.Drawing.Point(9, 229);
+            this.dgEmpleados.MultiSelect = false;
             this.dgEmpleados.Name = "dgEmpleados";
+            this.dgEmpleados.ReadOnly = true;
+            this.dgEmpleados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgEmpleados.Size = new System.Drawing.Size(611, 229);
             this.dgEmpleados.TabIndex = 68;
+            this.dgEmpleados.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgEmpleados_CellClick);
             // 
             // dtmRetiro
             // 
@@ -213,15 +219,17 @@
             this.btnEliminar.TabIndex = 57;
             this.btnEliminar.Text = "Borrar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnReEstablecer
             // 
-            this.btnReEstablecer.Location = new System.Drawing.Point(231, 182);
+            this.btnReEstablecer.Location = new System.Drawing.Point(340, 182);
             this.btnReEstablecer.Name = "btnReEstablecer";
             this.btnReEstablecer.Size = new System.Drawing.Size(103, 41);
             this.btnReEstablecer.TabIndex = 58;
             this.btnReEstablecer.Text = "Nuevo";
             this.btnReEstablecer.UseVisualStyleBackColor = true;
+            this.btnReEstablecer.Click += new System.EventHandler(this.btnReEstablecer_Click);
             // 
             // txtDocumento
             // 
@@ -257,11 +265,22 @@
             this.label2.TabIndex = 52;
             this.label2.Text = "Nombre";
             // 
+            // btnActualizar
+            // 
+            this.btnActualizar.Location = new System.Drawing.Point(231, 182);
+            this.btnActualizar.Name = "btnActualizar";
+            this.btnActualizar.Size = new System.Drawing.Size(103, 41);
+            this.btnActualizar.TabIndex = 69;
+            this.btnActualizar.Text = "Actualizar";
+            this.btnActualizar.UseVisualStyleBackColor = true;
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(626, 467);
+            this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.dgEmpleados);
             this.Controls.Add(this.dtmRetiro);
             this.Controls.Add(this.dtmIngreso);
@@ -322,6 +341,7 @@
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnActualizar;
     }
 }
 

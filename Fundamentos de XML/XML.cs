@@ -140,33 +140,19 @@ namespace Fundamentos_de_XML
             return empleado;
         }
 
-        public void _ReadXml()
-        {
-            doc.Load(rutaXml);
-            XmlNodeList listaEmpleados = doc.SelectNodes("Empleados/persona");
-            XmlNode unEmpleado;
-            for (int i = 0; i < listaEmpleados.Count; i++)
-            {
-                unEmpleado = listaEmpleados.Item(i);
-
-                string id = unEmpleado.SelectSingleNode("id").InnerText;
-                string nombre = unEmpleado.SelectSingleNode("nombre").InnerText;
-                string apellidos = unEmpleado.SelectSingleNode("apellidos").InnerText;
-                Console.Write("Id: {0}, Nombre: {1}, Apellidos: {2}\n", id, nombre, apellidos);
-            }
-        }
-
         public void _DeleteNodo(string id_borrar)
         {
+            doc = new XmlDocument();
             doc.Load(rutaXml);
             XmlNode empleados = doc.DocumentElement;
-            XmlNodeList listaEmpleados = doc.SelectNodes("Empleados/persona");
+            XmlNodeList listaEmpleados = doc.SelectNodes("Empleados/Empleado");
             foreach (XmlNode item in listaEmpleados)
             {
-                if (item.SelectSingleNode("id").InnerText == id_borrar)
+                if (item.SelectSingleNode("Documento").InnerText == id_borrar)
                 {
                     XmlNode nodoOld = item;
                     empleados.RemoveChild(nodoOld);
+                    break;
                 }
             }
             doc.Save(rutaXml);
@@ -182,7 +168,7 @@ namespace Fundamentos_de_XML
             )
         {
             XmlElement empleados = doc.DocumentElement;
-            XmlNodeList listaEmpleados = doc.SelectNodes("Empleados/persona");
+            XmlNodeList listaEmpleados = doc.SelectNodes("Empleados/Empleado");
             XmlNode nuevo_empleado = _Crear_Empleado(id_update, Nombre, Direccion, Telefono, Email,
                 //Rol,
                 datosadicionales);
@@ -192,6 +178,7 @@ namespace Fundamentos_de_XML
                 {
                     XmlNode nodoOld = item;
                     empleados.ReplaceChild(nuevo_empleado, nodoOld);
+                    break;
                 }
             }
             doc.Save(rutaXml);
