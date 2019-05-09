@@ -61,6 +61,7 @@
             this.dgEmpleados.Name = "dgEmpleados";
             this.dgEmpleados.Size = new System.Drawing.Size(611, 229);
             this.dgEmpleados.TabIndex = 68;
+            this.dgEmpleados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgEmpleados_CellContentClick);
             // 
             // dtmRetiro
             // 
@@ -287,6 +288,7 @@
             this.Controls.Add(this.label2);
             this.Name = "Form1";
             this.Text = "Empleado";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgEmpleados)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

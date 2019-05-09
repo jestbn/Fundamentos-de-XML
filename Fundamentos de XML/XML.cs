@@ -4,13 +4,50 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.IO;
+using System.Windows.Forms;
 
 namespace Fundamentos_de_XML
 {
     class XML
     {
-        XmlDocument doc;
-        string rutaXml;
+        public XmlDocument doc;
+        public string rutaXml;
+
+
+        public void _crearArchivo()
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.InitialDirectory = @"C:\";
+            saveFileDialog.RestoreDirectory = true;
+            saveFileDialog.FileName = "Empleados.xml";
+            saveFileDialog.DefaultExt = "xml";
+            saveFileDialog.Filter = "XML-File | *.xml";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                Stream fileStream = saveFileDialog.OpenFile();
+                StreamWriter sw = new StreamWriter(fileStream);
+                rutaXml = saveFileDialog.FileName;
+                sw.Write(rutaXml);
+                fileStream.Close();
+                _crearXml(rutaXml, "Empleados");
+            }
+        }
+
+        public void _cargarArchivo()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = @"C:\";
+            openFileDialog.RestoreDirectory = true;
+            openFileDialog.FileName = "Empleados.xml";
+            openFileDialog.DefaultExt = "xml";
+            openFileDialog.Filter = "XML-File | *.xml";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                rutaXml = openFileDialog.FileName;
+                //queda pendiente para cargarlo en el datagrid en esta parte del codigo
+            }
+        }
 
         public void _crearXml(string ruta, string nodoRaiz)
         {
@@ -24,9 +61,21 @@ namespace Fundamentos_de_XML
 
             XmlNode element1 = doc.CreateElement(nodoRaiz);
             doc.AppendChild(element1);
-            doc.Save(ruta);
+            try
+            {
+                doc.Save(ruta);
+                //en esta parte queda pendiente para volver a mostrar el registro en el datagrid
+            }
+            catch (Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show("Se ha producido un error : "+e.ToString());
+            }
+            
         }
-        public void _Añadir(string Documento,string Nombre,string Direccion,
+        public void _Añadir(
+            string Documento,
+            string Nombre,
+            string Direccion,
             string Telefono,
             string Email,
             //string Rol,
@@ -35,6 +84,7 @@ namespace Fundamentos_de_XML
             string datosadicionales
             )
         {
+            doc = new XmlDocument();
             doc.Load(rutaXml);
             XmlNode empleado = _Crear_Empleado(Documento, Nombre, Direccion,Telefono,Email,
                 //Rol,
@@ -57,6 +107,8 @@ namespace Fundamentos_de_XML
         {
 
             XmlNode empleado = doc.CreateElement("Empleado");
+
+
             XmlElement xid = doc.CreateElement("Documento");
             xid.InnerText = Documento;
             empleado.AppendChild(xid);
@@ -70,11 +122,11 @@ namespace Fundamentos_de_XML
             empleado.AppendChild(xdireccion);
 
             XmlElement xtelefono = doc.CreateElement("Teléfono");
-            xdireccion.InnerText = Direccion;
+            xtelefono.InnerText = Telefono;
             empleado.AppendChild(xtelefono);
 
             XmlElement xemail = doc.CreateElement("Email");
-            xdireccion.InnerText = Email;
+            xemail.InnerText = Email;
             empleado.AppendChild(xemail);
 
             /*XmlElement xrol = doc.CreateElement("Rol");
@@ -82,7 +134,7 @@ namespace Fundamentos_de_XML
             empleado.AppendChild(xrol); */
 
             XmlElement xdatosa = doc.CreateElement("DatosAdicionales");
-            xdireccion.InnerText = datosadicionales;
+            xdatosa.InnerText = datosadicionales;
             empleado.AppendChild(xdatosa);
 
             return empleado;
