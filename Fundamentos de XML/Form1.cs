@@ -78,7 +78,7 @@ namespace Fundamentos_de_XML
             txtDireccion.Clear();
             txtTelefono.Clear();
             txtEmail.Clear();
-            cbRol.SelectedIndex = 0;
+            cbRol.SelectedItem = "NA";
             dtmIngreso.Value = DateTime.Now;
             dtmRetiro.Value = Convert.ToDateTime("01/01/1900");
             txtDatosAdicionales.Clear();
