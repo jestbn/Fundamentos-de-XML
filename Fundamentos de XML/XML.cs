@@ -143,6 +143,74 @@ namespace Fundamentos_de_XML
             return empleado;
         }
 
+
+        private XmlNode _Crear_Empleado(string Documento,
+            string Nombre,
+            string Direccion,
+            string Telefono,
+            string Email,
+            string Rol,
+            DateTime f_ingreso,
+            DateTime f_retiro,
+            string datosadicionales,
+            DateTime FechaModifica,
+            string StrUsuarioModifico
+            )
+        {
+
+            XmlNode empleado = doc.CreateElement("Empleado");
+
+
+            XmlElement xid = doc.CreateElement("Documento");
+            xid.InnerText = Documento;
+            empleado.AppendChild(xid);
+
+            XmlElement xnombre = doc.CreateElement("Nombre");
+            xnombre.InnerText = Nombre;
+            empleado.AppendChild(xnombre);
+
+            XmlElement xdireccion = doc.CreateElement("Dirección");
+            xdireccion.InnerText = Direccion;
+            empleado.AppendChild(xdireccion);
+
+            XmlElement xtelefono = doc.CreateElement("Teléfono");
+            xtelefono.InnerText = Telefono;
+            empleado.AppendChild(xtelefono);
+
+            XmlElement xemail = doc.CreateElement("Email");
+            xemail.InnerText = Email;
+            empleado.AppendChild(xemail);
+
+            XmlElement xrol = doc.CreateElement("Rol");
+            xrol.InnerText = Rol;
+            empleado.AppendChild(xrol);
+
+            XmlElement xingre = doc.CreateElement("Fecha_Ingreso");
+            //Maneras de ingresar la fecha de manera diferente, una es larga y la otra es corta
+            xingre.InnerText = f_ingreso.ToShortDateString();
+            xingre.InnerText = f_ingreso.ToString();
+            empleado.AppendChild(xingre);
+
+            XmlElement xretir = doc.CreateElement("Fecha_Retiro");
+            //Se puede ver en las dos fechas su variedad
+            xretir.InnerText = f_retiro.ToShortDateString();
+            empleado.AppendChild(xretir);
+
+            XmlElement xdatosa = doc.CreateElement("DatosAdicionales");
+            xdatosa.InnerText = datosadicionales;
+            empleado.AppendChild(xdatosa);
+
+            XmlElement xfechamod = doc.CreateElement("Fecha_Modifica");
+            xfechamod.InnerText = FechaModifica.ToString();
+            empleado.AppendChild(xfechamod);
+
+            XmlElement xusermod = doc.CreateElement("Usuario_Modifica");
+            xusermod.InnerText = StrUsuarioModifico;
+            empleado.AppendChild(xusermod);
+
+            return empleado;
+        }
+
         public void _DeleteNodo(string id_borrar)
         {
             doc = new XmlDocument();
@@ -167,7 +235,7 @@ namespace Fundamentos_de_XML
             doc.Load(rutaXml);
             XmlElement empleados = doc.DocumentElement;
             XmlNodeList listaEmpleados = doc.SelectNodes("Empleados/Empleado");
-            XmlNode nuevo_empleado = _Crear_Empleado(id_update, Nombre, Direccion, Telefono, Email, Rol, f_ingreso, f_retiro, datosadicionales);
+            XmlNode nuevo_empleado = _Crear_Empleado(id_update, Nombre, Direccion, Telefono, Email, Rol, f_ingreso, f_retiro, datosadicionales, DateTime.Now,"Admin Esteban Gil");
             foreach (XmlNode item in listaEmpleados)
             {
                 if (item.FirstChild.InnerText == id_update)
