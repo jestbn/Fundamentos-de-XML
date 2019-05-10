@@ -77,17 +77,15 @@ namespace Fundamentos_de_XML
             string Direccion,
             string Telefono,
             string Email,
-            //string Rol,
-            //DateTime f_ingreso
-            //DateTime f_retiro
+            string Rol,
+            DateTime f_ingreso,
+            DateTime f_retiro,
             string datosadicionales
             )
         {
             doc = new XmlDocument();
             doc.Load(rutaXml);
-            XmlNode empleado = _Crear_Empleado(Documento, Nombre, Direccion,Telefono,Email,
-                //Rol,
-                datosadicionales);
+            XmlNode empleado = _Crear_Empleado(Documento, Nombre, Direccion, Telefono, Email, Rol,f_ingreso, f_retiro, datosadicionales);
             XmlNode nodoRaiz = doc.DocumentElement;
             nodoRaiz.InsertAfter(empleado, nodoRaiz.LastChild);
             doc.Save(rutaXml);
@@ -98,9 +96,9 @@ namespace Fundamentos_de_XML
             string Direccion,
             string Telefono,
             string Email,
-            //string Rol,
-            //DateTime f_ingreso
-            //DateTime f_retiro
+            string Rol,
+            DateTime f_ingreso,
+            DateTime f_retiro,
             string datosadicionales
             )
         {
@@ -128,9 +126,18 @@ namespace Fundamentos_de_XML
             xemail.InnerText = Email;
             empleado.AppendChild(xemail);
 
-            /*XmlElement xrol = doc.CreateElement("Rol");
-            xdireccion.InnerText = Rol;
-            empleado.AppendChild(xrol); */
+            XmlElement xrol = doc.CreateElement("Rol");
+            xrol.InnerText = Rol;
+            empleado.AppendChild(xrol);
+
+            XmlElement xingre = doc.CreateElement("Fecha_Ingreso");
+            xingre.InnerText = f_ingreso.ToShortDateString();
+            xingre.InnerText = f_ingreso.ToString();
+            empleado.AppendChild(xingre);
+
+            XmlElement xretir = doc.CreateElement("Fecha_Retiro");
+            xretir.InnerText = f_retiro.ToShortDateString();
+            empleado.AppendChild(xretir);
 
             XmlElement xdatosa = doc.CreateElement("DatosAdicionales");
             xdatosa.InnerText = datosadicionales;
@@ -157,22 +164,13 @@ namespace Fundamentos_de_XML
             doc.Save(rutaXml);
         }
 
-        public void _UpdateXml(string id_update, string Nombre, string Direccion,
-            string Telefono,
-            string Email,
-            //string Rol,
-            //DateTime f_ingreso
-            //DateTime f_retiro
-            string datosadicionales
-            )
+        public void _UpdateXml(string id_update, string Nombre, string Direccion, string Telefono, string Email, string Rol, DateTime f_ingreso, DateTime f_retiro, string datosadicionales)
         {
             doc = new XmlDocument();
             doc.Load(rutaXml);
             XmlElement empleados = doc.DocumentElement;
             XmlNodeList listaEmpleados = doc.SelectNodes("Empleados/Empleado");
-            XmlNode nuevo_empleado = _Crear_Empleado(id_update, Nombre, Direccion, Telefono, Email,
-                //Rol,
-                datosadicionales);
+            XmlNode nuevo_empleado = _Crear_Empleado(id_update, Nombre, Direccion, Telefono, Email, Rol, f_ingreso,f_retiro, datosadicionales);
             foreach (XmlNode item in listaEmpleados)
             {
                 if (item.FirstChild.InnerText == id_update)
