@@ -32,13 +32,14 @@ namespace Fundamentos_de_XML
                 cbRol.Items.Add(i);
             }
             cbRol.Items.Add("NA");
+            cbRol.SelectedItem = "NA";
             refrescaDG();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
 
-            Mixml._Añadir(txtDocumento.Text, txtNombre.Text, txtDireccion.Text, txtTelefono.Text, txtEmail.Text, cbRol.Text, dtmIngreso.Value,dtmRetiro.Value, txtDatosAdicionales.Text);
+            Mixml._Añadir(txtDocumento.Text, txtNombre.Text, txtDireccion.Text, txtTelefono.Text, txtEmail.Text, cbRol.Text, dtmIngreso.Value, dtmRetiro.Value, txtDatosAdicionales.Text);
             refrescaDG();
 
         }
@@ -91,7 +92,7 @@ namespace Fundamentos_de_XML
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-            Mixml._UpdateXml(txtDocumento.Text,txtNombre.Text,txtDireccion.Text,txtTelefono.Text,txtEmail.Text,cbRol.Text,dtmIngreso.Value,dtmRetiro.Value, txtDatosAdicionales.Text);
+            Mixml._UpdateXml(txtDocumento.Text, txtNombre.Text, txtDireccion.Text, txtTelefono.Text, txtEmail.Text, cbRol.Text, dtmIngreso.Value, dtmRetiro.Value, txtDatosAdicionales.Text);
             refrescaDG();
         }
 
@@ -105,16 +106,16 @@ namespace Fundamentos_de_XML
                 txtDireccion.Text = row.Cells[2].Value.ToString();
                 txtTelefono.Text = row.Cells[3].Value.ToString();
                 txtEmail.Text = row.Cells[4].Value.ToString();
-                cbRol.SelectedItem = Convert.ToInt16(row.Cells[5].Value.ToString());
+                cbRol.SelectedItem = row.Cells[5].Value.ToString();
                 dtmIngreso.Value = Convert.ToDateTime(row.Cells[6].Value.ToString());
                 dtmRetiro.Value = Convert.ToDateTime(row.Cells[7].Value.ToString());
                 txtDatosAdicionales.Text = row.Cells[8].Value.ToString();
             }
             catch (Exception error)
             {
-                MessageBox.Show("Ha ocurrido un error en la carga de la informacion" +error.ToString());
+                MessageBox.Show("Ha ocurrido un error en la carga de la informacion" + error.ToString());
             }
-            
+
         }
     }
 }

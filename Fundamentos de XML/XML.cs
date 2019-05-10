@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
 using System.IO;
 using System.Windows.Forms;
-using System.Data;
+using System.Xml;
 
 namespace Fundamentos_de_XML
 {
@@ -67,9 +62,9 @@ namespace Fundamentos_de_XML
             }
             catch (Exception e)
             {
-                System.Windows.Forms.MessageBox.Show("Se ha producido un error : "+e.ToString());
+                System.Windows.Forms.MessageBox.Show("Se ha producido un error : " + e.ToString());
             }
-            
+
         }
         public void _Añadir(
             string Documento,
@@ -85,7 +80,7 @@ namespace Fundamentos_de_XML
         {
             doc = new XmlDocument();
             doc.Load(rutaXml);
-            XmlNode empleado = _Crear_Empleado(Documento, Nombre, Direccion, Telefono, Email, Rol,f_ingreso, f_retiro, datosadicionales);
+            XmlNode empleado = _Crear_Empleado(Documento, Nombre, Direccion, Telefono, Email, Rol, f_ingreso, f_retiro, datosadicionales);
             XmlNode nodoRaiz = doc.DocumentElement;
             nodoRaiz.InsertAfter(empleado, nodoRaiz.LastChild);
             doc.Save(rutaXml);
@@ -131,11 +126,13 @@ namespace Fundamentos_de_XML
             empleado.AppendChild(xrol);
 
             XmlElement xingre = doc.CreateElement("Fecha_Ingreso");
+            //Maneras de ingresar la fecha de manera diferente, una es larga y la otra es corta
             xingre.InnerText = f_ingreso.ToShortDateString();
             xingre.InnerText = f_ingreso.ToString();
             empleado.AppendChild(xingre);
 
             XmlElement xretir = doc.CreateElement("Fecha_Retiro");
+            //Se puede ver en las dos fechas su variedad
             xretir.InnerText = f_retiro.ToShortDateString();
             empleado.AppendChild(xretir);
 
@@ -170,7 +167,7 @@ namespace Fundamentos_de_XML
             doc.Load(rutaXml);
             XmlElement empleados = doc.DocumentElement;
             XmlNodeList listaEmpleados = doc.SelectNodes("Empleados/Empleado");
-            XmlNode nuevo_empleado = _Crear_Empleado(id_update, Nombre, Direccion, Telefono, Email, Rol, f_ingreso,f_retiro, datosadicionales);
+            XmlNode nuevo_empleado = _Crear_Empleado(id_update, Nombre, Direccion, Telefono, Email, Rol, f_ingreso, f_retiro, datosadicionales);
             foreach (XmlNode item in listaEmpleados)
             {
                 if (item.FirstChild.InnerText == id_update)
