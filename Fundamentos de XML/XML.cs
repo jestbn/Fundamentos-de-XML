@@ -240,9 +240,17 @@ namespace Fundamentos_de_XML
             {
                 if (item.FirstChild.InnerText == id_update)
                 {
-                    XmlNode nodoOld = item;
-                    empleados.ReplaceChild(nuevo_empleado, nodoOld);
-                    break;
+                    try
+                    {
+                        XmlNode nodoOld = item;
+                        empleados.ReplaceChild(nuevo_empleado, nodoOld);
+                        break;
+
+                    }
+                    catch (Exception v)
+                    {
+                        MessageBox.Show("Se ha presentado un error :"+ v.ToString());
+                    }
                 }
             }
             doc.Save(rutaXml);
